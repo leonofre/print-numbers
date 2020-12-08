@@ -18,12 +18,6 @@ final class PrintNumbersTest extends TestCase
         return $printNumbers;
     }
 
-    public function testCanBePrintNumbersFrom1To100(): void
-    {
-        $this->assertInstanceOf(
-            PrintNumbers::class,
-            PrintNumbers::defineRange( 1, 10 )
-        );
-    }
+    
 
 }
