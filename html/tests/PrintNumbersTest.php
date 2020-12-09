@@ -3,6 +3,34 @@ use PHPUnit\Framework\TestCase;
 
 final class PrintNumbersTest extends TestCase
 {
+    private $test_cases = [
+        [
+            'start' => 1,
+            'limit' => 20,
+            'cases' => [
+                '2' => 'Two',
+                '5' => 'Five',
+            ]
+        ],
+        [
+            'start' => 10,
+            'limit' => 50,
+            'cases' => [
+                '3' => 'Three',
+                '5' => 'Five',
+                '4' => 'Four',
+            ]
+        ],
+        [
+            'start' => 1,
+            'limit' => 100,
+            'cases' => [
+                '3' => 'Three',
+                '5' => 'Five',
+            ]
+        ]
+    ];
+
     /**
      * @dataProvider printNumbersProvider
      */
@@ -16,57 +44,29 @@ final class PrintNumbersTest extends TestCase
     /**
      * @dataProvider printNumbersProvider
      */
-    public function testNotEmpty( PrintNumbers $printNumbers ) {
+    public function testNotEmpty( PrintNumbers $printNumbers, Numbers $numbers ) {
 
-        $this->assertNotEmpty( $printNumbers->getNumbers() );
-
-        return $numbers_to_print;
+        $this->assertNotEmpty( $numbers->getNumbers() );
     }
 
     /**
      * @dataProvider printNumbersProvider
      */
-    public function testArrayContent( PrintNumbers $printNumbers, array $numbers ) {
-        $numbers_to_print = $printNumbers->getNumbers();
-        $this->assertEquals( $numbers, $numbers_to_print );
+    public function testArrayContent( PrintNumbers $printNumbers, Numbers $numbers, array $number_list ) {
+        $numbers_to_print = $numbers->getNumbers();
+        $this->assertEquals( $number_list, $numbers_to_print );
     }
 
     /**
      * @dataProvider printNumbersProvider
      */
-    public function testPrintNumbers( PrintNumbers $printNumbers, array $numbers, string $print ) {
+    public function testPrintNumbers( PrintNumbers $printNumbers, Numbers $numbers, array $number_list, string $print ) {
         $this->expectOutputString( $print );
         $printNumbers->printNumbers();
     }
 
     public function printNumbersProvider() {
-        $test_cases = [
-            [
-                'start' => 1,
-                'limit' => 20,
-                'cases' => [
-                    '2' => 'Two',
-                    '5' => 'Five',
-                ]
-            ],
-            [
-                'start' => 10,
-                'limit' => 50,
-                'cases' => [
-                    '3' => 'Three',
-                    '5' => 'Five',
-                    '4' => 'Four',
-                ]
-            ],
-            [
-                'start' => 1,
-                'limit' => 100,
-                'cases' => [
-                    '3' => 'Three',
-                    '5' => 'Five',
-                ]
-            ]
-        ];
+        $test_cases = $this->test_cases;
         $provider_return = [];
 
         foreach( $test_cases as $key => $test_case ) {
@@ -87,28 +87,23 @@ final class PrintNumbersTest extends TestCase
                     $test_cases[ $key ]['array_numbers'][] = strval( $i );
                     $test_cases[ $key ]['string_numbers']  .= $i . ', ';
                 }
-                
             }
         }
 
+        $printNumbersArray = [];
 
+        foreach( $test_cases as $test_case ) {
+            $numbers = new Numbers( $test_case['start'], $test_case['limit'], $test_case['cases'] );
+            $numbers->setNumbers( ConvertNumbers::changeNumber( $numbers ) );
 
-        return [
-            [
-                new PrintNumbers( $test_cases[0]['start'], $test_cases[0]['limit'], $test_cases[0]['cases'] ),
-                $test_cases[0]['array_numbers'],
-                $test_cases[0]['string_numbers']
-            ],
-            [
-                new PrintNumbers( $test_cases[1]['start'], $test_cases[1]['limit'], $test_cases[1]['cases'] ),
-                $test_cases[1]['array_numbers'],
-                $test_cases[1]['string_numbers']
-            ],
-            [
-                new PrintNumbers( $test_cases[2]['start'], $test_cases[2]['limit'], $test_cases[2]['cases'] ),
-                $test_cases[2]['array_numbers'],
-                $test_cases[2]['string_numbers']
-            ]
-        ];
+            $printNumbersArray[] = [
+                new PrintNumbers( $numbers ),
+                $numbers,
+                $test_case['array_numbers'],
+                $test_case['string_numbers']
+            ];
+        }
+
+        return $printNumbersArray;
     }
 }
