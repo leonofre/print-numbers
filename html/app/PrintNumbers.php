@@ -4,6 +4,7 @@ class PrintNumbers
 {
     private $start;
     private $limit;
+    private $numbers;
     private $toExtensiveCases;
 
     public function __construct( int $start, int $limit, array $toExtensiveCases )
@@ -13,6 +14,8 @@ class PrintNumbers
         $this->start = $start;
         $this->limit = $limit;
         $this->toExtensiveCases = $toExtensiveCases;
+
+        $this->setNumbers();
     }
 
     private function getNumber( $number ) {
@@ -28,16 +31,26 @@ class PrintNumbers
         return str_replace( $number . 'AND', '', implode( "AND", $response ) );
     }
 
-    private function checkCases( $extensiveCases, $number ) {
-        $multiple[] = $number % (int) $extensiveCases === 0;
+    private function checkCases( $extensiveCase, $number ) {
+        $multiple[] = $number % (int) $extensiveCase === 0;
 
         return $multiple;
     }
 
-    public function printNumbers() {
+    private function setNumbers() {
         for ( $i = $this->start; $i <= $this->limit; $i++ ) { 
-            print $this->getNumber( $i );
-            print '<br>';
+            $this->numbers[] = $this->getNumber( $i );
+        }
+    }
+
+    public function getNumbers() {
+        return $this->numbers;
+    }
+
+    public function printNumbers() {
+        $numbers = $this->getNumbers();
+        foreach ( $numbers as $number ) {
+            print $number . ', ';
         }
     }
 }
