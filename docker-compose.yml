@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+    restart: always
+  composer:
+    image: composer/composer
+    command: bash -c "composer install && ./vendor/bin/phpunit tests"
+    volumes: 
+      - ./html:/var/www/html
+    working_dir: /var/www/html
