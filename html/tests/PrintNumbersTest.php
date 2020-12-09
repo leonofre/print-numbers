@@ -40,195 +40,74 @@ final class PrintNumbersTest extends TestCase
     }
 
     public function printNumbersProvider() {
-        return [
+        $test_cases = [
             [
-                new PrintNumbers( 1, 20, [
+                'start' => 1,
+                'limit' => 20,
+                'cases' => [
                     '2' => 'Two',
                     '5' => 'Five',
-                ] ),
-                [
-                    '1',
-                    'Two',
-                    '3',
-                    'Two',
-                    'Five',
-                    'Two',
-                    '7',
-                    'Two',
-                    '9',
-                    'TwoANDFive',
-                    '11',
-                    'Two',
-                    '13',
-                    'Two',
-                    'Five',
-                    'Two',
-                    '17',
-                    'Two',
-                    '19',
-                    'TwoANDFive',
-                ],
-                '1, Two, 3, Two, Five, Two, 7, Two, 9, TwoANDFive, 11, Two, 13, Two, Five, Two, 17, Two, 19, TwoANDFive, '
+                ]
             ],
             [
-                new PrintNumbers( 10, 50, [
+                'start' => 10,
+                'limit' => 50,
+                'cases' => [
                     '3' => 'Three',
                     '5' => 'Five',
                     '4' => 'Four',
-                ] ),
-                [
-                    'Five',
-                    '11',
-                    'ThreeANDFour',
-                    '13',
-                    '14',
-                    'ThreeANDFive',
-                    'Four',
-                    '17',
-                    'Three',
-                    '19',
-                    'FourANDFive',
-                    'Three',
-                    '22',
-                    '23',
-                    'ThreeANDFour',
-                    'Five',
-                    '26',
-                    'Three',
-                    'Four',
-                    '29',
-                    'ThreeANDFive',
-                    '31',
-                    'Four',
-                    'Three',
-                    '34',
-                    'Five',
-                    'ThreeANDFour',
-                    '37',
-                    '38',
-                    'Three',
-                    'FourANDFive',
-                    '41',
-                    'Three',
-                    '43',
-                    'Four',
-                    'ThreeANDFive',
-                    '46',
-                    '47',
-                    'ThreeANDFour',
-                    '49',
-                    'Five'
-                ],
-                'Five, 11, ThreeANDFour, 13, 14, ThreeANDFive, Four, 17, Three, 19, FourANDFive, Three, 22, 23, ThreeANDFour, Five, 26, Three, Four, 29, ThreeANDFive, 31, Four, Three, 34, Five, ThreeANDFour, 37, 38, Three, FourANDFive, 41, Three, 43, Four, ThreeANDFive, 46, 47, ThreeANDFour, 49, Five, '
+                ]
             ],
             [
-                new PrintNumbers( 1, 100, [
+                'start' => 1,
+                'limit' => 100,
+                'cases' => [
                     '3' => 'Three',
                     '5' => 'Five',
-                ] ),
-                [
-                    "1",
-                    "2",
-                    "Three",
-                    "4",
-                    "Five",
-                    "Three",
-                    "7",
-                    "8",
-                    "Three",
-                    "Five",
-                    "11",
-                    "Three",
-                    "13",
-                    "14",
-                    "ThreeANDFive",
-                    "16",
-                    "17",
-                    "Three",
-                    "19",
-                    "Five",
-                    "Three",
-                    "22",
-                    "23",
-                    "Three",
-                    "Five",
-                    "26",
-                    "Three",
-                    "28",
-                    "29",
-                    "ThreeANDFive",
-                    "31",
-                    "32",
-                    "Three",
-                    "34",
-                    "Five",
-                    "Three",
-                    "37",
-                    "38",
-                    "Three",
-                    "Five",
-                    "41",
-                    "Three",
-                    "43",
-                    "44",
-                    "ThreeANDFive",
-                    "46",
-                    "47",
-                    "Three",
-                    "49",
-                    "Five",
-                    "Three",
-                    "52",
-                    "53",
-                    "Three",
-                    "Five",
-                    "56",
-                    "Three",
-                    "58",
-                    "59",
-                    "ThreeANDFive",
-                    "61",
-                    "62",
-                    "Three",
-                    "64",
-                    "Five",
-                    "Three",
-                    "67",
-                    "68",
-                    "Three",
-                    "Five",
-                    "71",
-                    "Three",
-                    "73",
-                    "74",
-                    "ThreeANDFive",
-                    "76",
-                    "77",
-                    "Three",
-                    "79",
-                    "Five",
-                    "Three",
-                    "82",
-                    "83",
-                    "Three",
-                    "Five",
-                    "86",
-                    "Three",
-                    "88",
-                    "89",
-                    "ThreeANDFive",
-                    "91",
-                    "92",
-                    "Three",
-                    "94",
-                    "Five",
-                    "Three",
-                    "97",
-                    "98",
-                    "Three",
-                    "Five"
-                ],
-                '1, 2, Three, 4, Five, Three, 7, 8, Three, Five, 11, Three, 13, 14, ThreeANDFive, 16, 17, Three, 19, Five, Three, 22, 23, Three, Five, 26, Three, 28, 29, ThreeANDFive, 31, 32, Three, 34, Five, Three, 37, 38, Three, Five, 41, Three, 43, 44, ThreeANDFive, 46, 47, Three, 49, Five, Three, 52, 53, Three, Five, 56, Three, 58, 59, ThreeANDFive, 61, 62, Three, 64, Five, Three, 67, 68, Three, Five, 71, Three, 73, 74, ThreeANDFive, 76, 77, Three, 79, Five, Three, 82, 83, Three, Five, 86, Three, 88, 89, ThreeANDFive, 91, 92, Three, 94, Five, Three, 97, 98, Three, Five, '
+                ]
+            ]
+        ];
+        $provider_return = [];
+
+        foreach( $test_cases as $key => $test_case ) {
+            for ( $i = $test_case['start']; $i <= $test_case['limit']; $i++ ) {
+                $change = [];
+                ksort( $test_case['cases'] );
+
+                foreach ( $test_case['cases'] as $number => $to_change ) {
+                    if ( $i % $number === 0 ) {
+                        $change[] = $to_change;
+                    }
+                }
+
+                if ( count( $change ) > 0 ) {
+                    $test_cases[ $key ]['array_numbers'][] = implode( 'AND', $change );
+                    $test_cases[ $key ]['string_numbers']  .= implode( 'AND', $change ) . ', ';
+                } else {
+                    $test_cases[ $key ]['array_numbers'][] = strval( $i );
+                    $test_cases[ $key ]['string_numbers']  .= $i . ', ';
+                }
+                
+            }
+        }
+
+
+
+        return [
+            [
+                new PrintNumbers( $test_cases[0]['start'], $test_cases[0]['limit'], $test_cases[0]['cases'] ),
+                $test_cases[0]['array_numbers'],
+                $test_cases[0]['string_numbers']
+            ],
+            [
+                new PrintNumbers( $test_cases[1]['start'], $test_cases[1]['limit'], $test_cases[1]['cases'] ),
+                $test_cases[1]['array_numbers'],
+                $test_cases[1]['string_numbers']
+            ],
+            [
+                new PrintNumbers( $test_cases[2]['start'], $test_cases[2]['limit'], $test_cases[2]['cases'] ),
+                $test_cases[2]['array_numbers'],
+                $test_cases[2]['string_numbers']
             ]
         ];
     }
