@@ -11,4 +11,4 @@ Using SOLID principles, write a program that prints all the numbers from 1 to 10
  2. Access the repository folder
  3. Run `docker-compose build`
  4. Run `docker-compose up` (the unit test results will be shown automatically after this command)
- 5. Go to http: // localhost: 8000 / to see the printed numbers from 1 to 100, with the necessary changes
+ 5. Go to http://localhost:8000/ to see the printed numbers from 1 to 100, with the necessary changes
